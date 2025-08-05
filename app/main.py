@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.api.v1.controller import formulario
+from app.api.v1.controller import resposta
 from app.api.v1.controller import pergunta
 from app.core.database import Base, engine
 import os
@@ -13,13 +14,13 @@ Base.metadata.create_all(bind=engine)
 # Rotas
 app.include_router(formulario.router, prefix="/api/v1/formularios", tags=["Formulários"])
 app.include_router(pergunta.router, prefix="/api/v1/perguntas", tags=["Perguntas"])
-
+app.include_router(resposta.router, prefix="/api/v1/resposta", tags=['Respotas'] )
 
 @app.on_event("startup")
 def log_routes():
     port = os.getenv("PORT", 8000)
     host = os.getenv("HOST", "localhost")
-    
+
     print(f"\n🚀 Aplicação disponível em: http://{host}:{port}\n")
     print("📚 Rotas disponíveis:")
     for route in app.routes:

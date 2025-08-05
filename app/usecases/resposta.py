@@ -1,10 +1,7 @@
 from sqlalchemy.orm import Session
-from app.domain.models.resposta import Resposta
 from app.domain.models.opcoes_resposta import OpcaoResposta
-from app.domain.models.opcoes_resposta_pergunta import OpcoesRespostaPergunta
 from app.repositories.opcoes_resposta import  OpcaoResposta
-from app.repositories.opcoes_resposta_pergunta import OpcoesRespostaPerguntaRepository
-
+ 
 class RespostaUseCase:
     def __init__(self, db: Session):
         self.db = db
@@ -26,8 +23,9 @@ class RespostaUseCase:
                 resposta_aberta = data['id_pergunta']
             )
 
-
-            self.resposta_repo.create(resposta)
+            print('repostas')
+            print(resposta)
+            # self.resposta_repo.create(resposta)
 
         
 
