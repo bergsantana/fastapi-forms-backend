@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: formdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - forms-network
+
+
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    networks:
+      - forms-network
+
+volumes:
+  postgres_data:
+
+networks: 
+  forms-network:
+    driver: bridge
